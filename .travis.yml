@@ -3,6 +3,7 @@ language: generic
 os:
   - linux
   - osx
+  - windows
 
 env:
   matrix:
@@ -15,6 +16,8 @@ before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       OS="MacOSX-x86_64"
+    elif [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+      OS="Windows-x86_64"
     else
       OS="Linux-x86_64"
     fi
@@ -27,14 +30,12 @@ before_install:
   - source activate _test
 
 install:
-  - mkdir _build && cd _build
-  - cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX
-  - make
   - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      source ../scripts/update_rpaths.sh
+    if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+      source ../scripts/bld.bat
+    else
+      source ../scripts/build.sh
     fi
-  - make install
 
 script:
   - ctest --output-on-failure
