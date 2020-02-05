@@ -30,6 +30,7 @@ before_install:
   - source activate _test
 
 install:
+  - mkdir _build && cd _build
   - |
     if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
       source ../scripts/bld.bat
