@@ -28,7 +28,6 @@ jobs:
           conda list
 
       - name: Activate conda env
-        shell: cmd /C CALL {0}
         run: conda activate test
 
       - name: Make cmake build directory
