@@ -27,6 +27,10 @@ jobs:
           conda install fortran-compiler cmake bmi-fortran
           conda list
 
+      - name: Activate conda env
+        shell: cmd /C CALL {0}
+        run: conda activate test
+
       - name: Make cmake build directory
         run: cmake -E make_directory build
 
@@ -39,6 +43,7 @@ jobs:
           :: Configure
           cmake ^
             -LAH -G "NMake Makefiles" ^
+            -DCMAKE_INSTALL_PREFIX:PATH=C:/Miniconda/envs/test/Library ^
             -DCMAKE_PREFIX_PATH:PATH=C:/Miniconda/envs/test/Library ^
             -DCMAKE_BUILD_TYPE=${{ env.build-type }} ^
             ..
