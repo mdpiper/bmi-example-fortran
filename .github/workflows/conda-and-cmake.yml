@@ -38,9 +38,10 @@ jobs:
         shell: cmd /C CALL {0}
         working-directory: ${{ github.workspace }}\build
         run: |
-          set CMAKE_GEN
-          set LIB
-          set INCLUDE
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.16 10.0.19041.0
+
+          set CONDA
+          set "LIB=C:\Miniconda\envs\test\Library\lib;%LIB%"
 
           :: Configure
           cmake ^
