@@ -38,18 +38,20 @@ jobs:
         shell: cmd /C CALL {0}
         working-directory: ${{ github.workspace }}\build
         run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.16 10.0.19041.0
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=15.xx 10.0.19041.0
 
-          set CONDA
-          set CPATH
+          set "CONDA_PREFIX=C:\Miniconda\envs\test"
           set "LIB=C:\Miniconda\envs\test\Library\lib;%LIB%"
           set "INCLUDE=C:\Miniconda\envs\test\Library\include;%INCLUDE%"
+          set CONDA_PREFIX
           set LIB
           set INCLUDE
 
+          if not exist C:/Miniconda/envs/test/Library/include/bmif_2_0.mod exit 1
+
           :: Configure
           cmake ^
-            -LAH -G "NMake Makefiles" ^
+            -LAH -G "Visual Studio 15 2017 Win64" ^
             -DCMAKE_INSTALL_PREFIX:PATH=C:/Miniconda/envs/test/Library ^
             -DCMAKE_PREFIX_PATH:PATH=C:/Miniconda/envs/test/Library ^
             -DCMAKE_BUILD_TYPE=${{ env.build-type }} ^
