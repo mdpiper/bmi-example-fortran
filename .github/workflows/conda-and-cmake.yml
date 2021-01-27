@@ -46,6 +46,7 @@ jobs:
           set CONDA_PREFIX
           set LIB
           set INCLUDE
+          set LIBRARY_PATH
 
           if not exist C:/Miniconda/envs/test/Library/include/bmif_2_0.mod exit 1
 
@@ -54,6 +55,7 @@ jobs:
             -LAH -G "NMake Makefiles" ^
             -DCMAKE_INSTALL_PREFIX:PATH=C:/Miniconda/envs/test/Library ^
             -DCMAKE_PREFIX_PATH:PATH=C:/Miniconda/envs/test/Library ^
+            -DCMAKE_Fortran_MODULE_DIRECTORY:PATH=C:/Miniconda/envs/test/Library/include ^
             -DCMAKE_BUILD_TYPE=${{ env.build-type }} ^
             ..
 
