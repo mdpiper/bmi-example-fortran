@@ -29,7 +29,16 @@ jobs:
           create-args: >-
             cmake
             fortran-compiler
-            bmi-fortran
+
+      - name: Build the bmi-fortran specification locally
+        run: |
+          curl -o bmi-fortran.zip -L https://github.com/csdms/bmi-fortran/archive/refs/heads/mdpiper/add-pkgconfig-file.zip
+          unzip bmi-fortran.zip
+          cd bmi-fortran-mdpiper-add-pkgconfig-file
+          mkdir build && cd build
+          cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --target install --config Release  
+          cd ${{ github.workspace }}
 
       - name: Make CMake build directory
         run: cmake -E make_directory build
@@ -90,9 +99,9 @@ jobs:
       # workaround.
       - name: Build the bmi-fortran specification locally
         run: |
-            curl -o bmi-fortran.zip -L https://github.com/csdms/bmi-fortran/archive/refs/heads/master.zip
+            curl -o bmi-fortran.zip -L https://github.com/csdms/bmi-fortran/archive/refs/heads/mdpiper/add-pkgconfig-file.zip
             unzip bmi-fortran.zip
-            cd bmi-fortran-master
+            cd bmi-fortran-mdpiper-add-pkgconfig-file
             mkdir build && cd build
             cmake .. -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX="$env:CONDA_PREFIX" -DCMAKE_BUILD_TYPE=Release
             cmake --build . --target install --config Release  
