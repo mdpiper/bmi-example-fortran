@@ -28,6 +28,7 @@ jobs:
           environment-name: testing
           create-args: >-
             cmake
+            pkg-config
             fortran-compiler
 
       - name: Build the bmi-fortran specification locally
@@ -88,6 +89,7 @@ jobs:
           environment-name: testing
           create-args: >-
             cmake
+            pkg-config
             cxx-compiler
           init-shell: >-
             powershell
