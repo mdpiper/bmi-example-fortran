@@ -120,12 +120,12 @@ jobs:
 
       - name: Test installed files
         run: |
-          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\lib\libheatf.a ) ){ exit 1 }
-          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\bin\run_heatf.exe ) ){ exit 1 }
-          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\include\heatf.mod ) ){ exit 1 }
-          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\bin\run_bmiheatf.exe ) ){ exit 1 }
-          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\lib\libbmiheatf.a ) ){ exit 1 }
-          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\include\bmiheatf.mod ) ){ exit 1 }
+          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\Library\lib\libheatf.a ) ){ exit 1 }
+          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\Library\bin\run_heatf.exe ) ){ exit 1 }
+          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\Library\include\heatf.mod ) ){ exit 1 }
+          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\Library\bin\run_bmiheatf.exe ) ){ exit 1 }
+          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\Library\lib\libbmiheatf.a ) ){ exit 1 }
+          if ( -not ( Test-Path -Path $env:CONDA_PREFIX\Library\include\bmiheatf.mod ) ){ exit 1 }
 
       # - name: Unit test with CTest
       #   working-directory: ${{ github.workspace }}/build
