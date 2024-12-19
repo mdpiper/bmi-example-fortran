@@ -90,6 +90,7 @@ jobs:
           environment-name: testing
           create-args: >-
             cmake
+            ninja
             pkg-config
             cxx-compiler
             fortran-compiler
