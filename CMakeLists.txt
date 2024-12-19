@@ -24,7 +24,9 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/mod)
 
 add_subdirectory(heat)
 add_subdirectory(bmi_heat)
-add_subdirectory(test)
-add_subdirectory(example)
+if(UNIX)
+  add_subdirectory(test)
+  add_subdirectory(example)
+endif()
 
 include(CTest)
